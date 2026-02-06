@@ -21,10 +21,24 @@ export type Expert = {
   timezone: string; // IANA timezone string e.g. "America/New_York"
   availability: Availability;
   services: Service[];
+  websiteUrl?: string;
 };
 
 export type TimeSlot = {
   start: Date;
   end: Date;
   isAvailable: boolean;
+};
+
+export type Testimonial = {
+  id: string;
+  expertId: string;
+  author: string;
+  role: string;
+  avatarUrl: string;
+  rating: number;
+  content: string;
+  videoUrl?: string;
+  type: 'text' | 'video';
+  date: string;
 };

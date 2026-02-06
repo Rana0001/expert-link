@@ -15,6 +15,7 @@ import { useState } from "react";
 const profileSchema = z.object({
   name: z.string().min(2),
   title: z.string().min(2),
+  website: z.string().url().optional().or(z.literal("")),
   bio: z.string().min(10),
   timezone: z.string(),
 });
@@ -27,6 +28,7 @@ export default function ProfilePage() {
     defaultValues: {
       name: "Dr. Sarah Chen",
       title: "Senior React Architect",
+      website: "https://sarahcodes.io",
       bio: "Ex-Meta engineer specializing in performance and large-scale React patterns.",
       timezone: "America/New_York",
     },
@@ -78,6 +80,18 @@ export default function ProfilePage() {
                       )}
                     />
                 </div>
+
+                <FormField
+                  control={form.control}
+                  name="website"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700">Website URL</FormLabel>
+                      <FormControl><Input {...field} placeholder="https://your-website.com" className="border-slate-200 focus:border-slate-900 focus:ring-slate-900" /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 
                 <FormField
                   control={form.control}

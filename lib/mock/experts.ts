@@ -16,7 +16,8 @@ export const MOCK_EXPERTS: Expert[] = [
     services: [
       { id: 'srv-1', name: 'Code Review (Async)', durationInMinutes: 30, price: 50, description: 'Deep dive into your PRs' },
       { id: 'srv-2', name: 'Architecture Consulation', durationInMinutes: 60, price: 150, description: 'Planning a scalable system' },
-    ]
+    ],
+    websiteUrl: 'https://sarahcodes.io',
   },
   {
     id: 'exp-2',

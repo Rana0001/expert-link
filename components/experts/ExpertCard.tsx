@@ -96,7 +96,7 @@ export function ExpertCard({ expert }: { expert: Expert }) {
             asChild 
             className="w-full gap-2 bg-slate-900 hover:bg-blue-600 text-white shadow-md shadow-slate-900/10 hover:shadow-blue-600/20 rounded-xl transition-all duration-300 h-10 text-sm font-medium"
         >
-          <Link href={`/expert/${expert.id}`}>
+          <Link href={`/expert/${expert.id}/book`}>
             Book Session
             <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
           </Link>
