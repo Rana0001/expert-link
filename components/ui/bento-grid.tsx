@@ -17,6 +17,7 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   description: string
   href: string
   cta: string
+  stats?: string[]
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
@@ -41,12 +42,13 @@ const BentoCard = ({
   description,
   href,
   cta,
+  stats,
   ...props
 }: BentoCardProps) => (
   <div
     key={name}
     className={cn(
-      "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300",
+      "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300 cursor-pointer",
       // light styles
       "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
       // dark styles - glassmorphic with depth
@@ -66,6 +68,20 @@ const BentoCard = ({
           {name}
         </h3>
         <p className="max-w-lg text-slate-600 dark:text-slate-400">{description}</p>
+        
+        {/* Stats badges */}
+        {stats && stats.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-3">
+            {stats.map((stat, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50"
+              >
+                {stat}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <div
