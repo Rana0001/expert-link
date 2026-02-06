@@ -5,6 +5,7 @@ import { Expert } from "@/lib/types";
 import { ExpertCard } from "./ExpertCard";
 import { Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 interface ExpertsGridProps {
   initialExperts: Expert[];
@@ -43,26 +44,21 @@ export function ExpertsGrid({ initialExperts, initialQuery = "" }: ExpertsGridPr
   return (
     <div className="space-y-12">
       {/* Search Bar */}
-      <div className="relative max-w-lg mx-auto mb-16">
+      <div className="relative max-w-md mx-auto mb-16">
         <div className="relative group z-20">
-            <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-indigo-500/20 rounded-2xl blur opacity-100 transition duration-1000 group-focus-within:opacity-100 group-hover:opacity-100"></div>
-            <div className="relative bg-white rounded-2xl p-1.5 shadow-xl shadow-slate-200/50 flex items-center gap-2 ring-1 ring-slate-100 transition-all group-focus-within:ring-blue-100 group-focus-within:shadow-blue-500/10">
-            <Search className="ml-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" size={20} />
+            <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <div className="relative bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2">
+            <Search className="ml-4 text-slate-400" size={20} />
             <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search experts, skills, or services..."
-                className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 h-11 w-full text-base"
+                placeholder="Search 'React', 'Marketing', 'Legal'..."
+                className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 h-10 w-full"
             />
-            {query && (
-              <button 
-                onClick={() => setQuery("")}
-                className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition-colors mr-1"
-              >
-                <X size={16} />
-              </button>
-            )}
+            <Button type="button" size="lg" className="rounded-xl bg-blue-600 hover:bg-blue-700">
+              Find Expert
+            </Button>
             </div>
             
             {/* Suggestions Dropdown */}

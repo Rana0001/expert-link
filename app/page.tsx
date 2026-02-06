@@ -2,7 +2,8 @@ import { MOCK_EXPERTS } from "@/lib/mock/experts";
 import { ExpertCard } from "@/components/experts/ExpertCard";
 import { Button } from "@/components/ui/button";
 import { GlassNavbar } from "@/components/ui/GlassNavbar"; // Import Nav
-import { Search, Star, ArrowRight } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
+import { SearchBar } from "@/components/ui/SearchBar";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Features } from "@/components/landing/Features";
 import { Testimonials } from "@/components/landing/Testimonials";
@@ -35,23 +36,10 @@ export default function Home() {
              Book 1:1 video consultations instantly. We handle the scheduling, timezone math, and payments so you can focus on learning.
            </p>
 
-           {/* Search Bar Mockup */}
-           <div className="max-w-md mx-auto mt-8 relative animate-in zoom-in-95 duration-700 delay-300">
-              <div className="relative group">
-                 <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                 <form action="/browse" className="relative bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2">
-                    <Search className="ml-4 text-slate-400" size={20} />
-                    <input 
-                      type="text" 
-                      name="q"
-                      placeholder="Search 'React', 'Marketing', 'Legal'..."
-                      className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 h-10 w-full"
-                    />
-                    <Button type="submit" size="lg" className="rounded-xl bg-blue-600 hover:bg-blue-700">
-                       Find Expert
-                    </Button>
-                 </form>
-              </div>
+
+           {/* Search Bar */}
+           <div className="mt-8 animate-in zoom-in-95 duration-700 delay-300">
+              <SearchBar />
            </div>
         </div>
       </section>
