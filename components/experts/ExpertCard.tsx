@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function ExpertCard({ expert }: { expert: Expert }) {
   return (
-    <Card className="group relative border border-slate-200/60 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 bg-white overflow-hidden rounded-2xl hover:-translate-y-1">
+    <Card className="group relative h-full flex flex-col border border-slate-200/60 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 bg-white overflow-hidden rounded-2xl hover:-translate-y-1">
       {/* Hover Gradient Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -51,7 +51,7 @@ export function ExpertCard({ expert }: { expert: Expert }) {
         </div>
       </CardHeader>
 
-      <CardContent className="pb-4 relative z-10">
+      <CardContent className="pb-4 relative z-10 flex-1">
         <div className="flex items-center gap-1 mb-4 bg-orange-50/50 w-fit px-2 py-1 rounded-md border border-orange-100/50">
           <div className="flex gap-0.5 text-orange-400">
              {[...Array(5)].map((_, i) => (
