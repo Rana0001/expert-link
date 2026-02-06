@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getExpertById } from "@/lib/mock/experts";
 import WizardContainer from "@/components/booking/WizardContainer";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { BackButton } from "@/components/experts/BackButton";
+import { createClient } from "@/utils/supabase/server";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -13,6 +14,16 @@ type Props = {
 
 export default async function BookingPage({ params }: Props) {
   const { id } = await params;
+  
+  // Check authentication
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  // Redirect to login with return URL if not authenticated
+  if (!user) {
+    redirect(`/login?redirect=/expert/${id}/book`);
+  }
+  
   const expert = getExpertById(id);
 
   if (!expert) {

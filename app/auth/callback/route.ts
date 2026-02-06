@@ -4,6 +4,8 @@ import { createClient } from '@/utils/supabase/server'
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
+  
+  // Try to get stored redirect from signup, otherwise use next param or dashboard default
   const next = searchParams.get('next') ?? '/dashboard'
 
   if (code) {

@@ -59,6 +59,14 @@ export default function SignUpPage() {
 
     // Show Success State
     setSuccess(true);
+    
+    // Store redirect URL for after email confirmation
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectTo = urlParams.get('redirect');
+    if (redirectTo) {
+      sessionStorage.setItem('post_signup_redirect', redirectTo);
+    }
+    
     toast.success("Account created!", {
         description: "Please check your email to confirm."
     });

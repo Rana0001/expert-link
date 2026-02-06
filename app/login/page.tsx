@@ -32,7 +32,7 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error, data } = await supabase.auth.signInWithPassword({
       email: values.email,
       password: values.password,
     });
@@ -46,11 +46,27 @@ export default function LoginPage() {
     }
 
     toast.success("Welcome back!", {
-        description: "Redirecting to your dashboard..."
+        description: "Redirecting..."
     });
 
+    // Get redirect URL from query params or determine based on role
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectTo = urlParams.get('redirect');
+    
+    // If there's a specific redirect, use it
+    if (redirectTo) {
+      router.push(redirectTo);
+    } else {
+      // Otherwise, redirect based on role
+      const userRole = data.user?.user_metadata?.role;
+      if (userRole === 'expert') {
+        router.push('/dashboard');
+      } else {
+        router.push('/');
+      }
+    }
+    
     router.refresh();
-    router.push('/dashboard'); 
   }
 
   return (

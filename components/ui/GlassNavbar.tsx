@@ -31,9 +31,15 @@ export function GlassNavbar() {
                         <Search size={20} />
                     </Link>
                 </Button>
-                <Button asChild className="hidden md:flex bg-slate-900 hover:bg-slate-800 text-white rounded-xl">
-                    <Link href="/onboarding">For Experts</Link>
+                
+                {/* Auth Buttons */}
+                <Button variant="ghost" asChild className="hidden md:flex text-slate-600 hover:text-blue-600 hover:bg-blue-50">
+                    <Link href="/login">Log in</Link>
                 </Button>
+                <Button asChild className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md">
+                    <Link href="/signup">Sign up</Link>
+                </Button>
+                
                 <Button variant="ghost" size="icon" className="md:hidden">
                     <Menu />
                 </Button>
