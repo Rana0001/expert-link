@@ -1,38 +1,74 @@
 "use client";
 
 import { Shield, Clock, CreditCard, Globe, Zap, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 
 const features = [
   {
-    icon: Shield,
-    title: "Vetted Professionals",
+    Icon: Shield,
+    name: "Vetted Professionals",
     description: "Every expert is verified for authenticity and quality assurance.",
+    href: "/browse",
+    cta: "Browse Experts",
+    className: "col-span-3 lg:col-span-1",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 opacity-50" />
+    ),
   },
   {
-    icon: Clock,
-    title: "Global Scheduling",
+    Icon: Clock,
+    name: "Global Scheduling",
     description: "Smart calendar handles timezone conversions automatically.",
+    href: "/#how-it-works",
+    cta: "Learn More",
+    className: "col-span-3 lg:col-span-2",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-emerald-50 to-teal-50 opacity-50" />
+    ),
   },
   {
-    icon: CreditCard,
-    title: "Secure Payments",
+    Icon: CreditCard,
+    name: "Secure Payments",
     description: "Funds are held in escrow until the session is successfully completed.",
+    href: "/#pricing",
+    cta: "View Pricing",
+    className: "col-span-3 lg:col-span-2",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-amber-50 to-orange-50 opacity-50" />
+    ),
   },
   {
-    icon: Globe,
-    title: "Browser-Based Calls",
+    Icon: Globe,
+    name: "Browser-Based Calls",
     description: "Crystal clear video calls directly in your browser. No installs.",
+    href: "/browse",
+    cta: "Try Now",
+    className: "col-span-3 lg:col-span-1",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-sky-50 to-cyan-50 opacity-50" />
+    ),
   },
   {
-    icon: Zap,
-    title: "Instant Booking",
+    Icon: Zap,
+    name: "Instant Booking",
     description: "See real-time availability and book sessions in seconds.",
+    href: "/browse",
+    cta: "Get Started",
+    className: "col-span-3 lg:col-span-1",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-yellow-50 to-amber-50 opacity-50" />
+    ),
   },
   {
-    icon: Heart,
-    title: "Satisfaction Guarantee",
-    description: "Not satisfied with your session? Gets a full refund, no questions asked.",
+    Icon: Heart,
+    name: "Satisfaction Guarantee",
+    description: "Not satisfied with your session? Get a full refund, no questions asked.",
+    href: "/#pricing",
+    cta: "Our Promise",
+    className: "col-span-3 lg:col-span-2",
+    background: (
+      <div className="absolute inset-0 bg-linear-to-br from-rose-50 to-pink-50 opacity-50" />
+    ),
   },
 ];
 
@@ -49,42 +85,11 @@ export function Features() {
           </p>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-        >
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index} 
-              className="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-100 hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 group"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-              }}
-            >
-              <div className="w-12 h-12 rounded-lg bg-white border border-slate-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
+        <BentoGrid>
+          {features.map((feature, idx) => (
+            <BentoCard key={idx} {...feature} />
           ))}
-        </motion.div>
+        </BentoGrid>
       </div>
     </section>
   );

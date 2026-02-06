@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/landing/Testimonials";
 import { Pricing } from "@/components/landing/Pricing";
 import { CallToAction } from "@/components/landing/CallToAction";
 import { Footer } from "@/components/landing/Footer";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 export default function Home() {
   return (
@@ -40,6 +41,17 @@ export default function Home() {
            {/* Search Bar */}
            <div className="mt-8 animate-in zoom-in-95 duration-700 delay-300">
               <SearchBar />
+           </div>
+
+           {/* Video Showcase */}
+           <div className="mt-12 max-w-4xl mx-auto animate-in zoom-in-95 duration-700 delay-400">
+              <HeroVideoDialog
+                videoSrc="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                thumbnailSrc="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1920&h=1080"
+                thumbnailAlt="ExpertLink Platform Demo"
+                animationStyle="from-center"
+                className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200"
+              />
            </div>
         </div>
       </section>

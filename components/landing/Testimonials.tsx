@@ -2,6 +2,7 @@
 
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Marquee } from "@/components/ui/marquee";
 
 const testimonials = [
   {
@@ -35,41 +36,82 @@ export function Testimonials() {
           Loved by Professionals
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, index) => (
-            <motion.div 
-              key={index} 
-              className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              {/* Quote icon decoration could go here */}
-              
-              <div className="flex text-yellow-500 mb-4">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" />
-                ))}
-              </div>
-              
-              <p className="text-slate-700 leading-relaxed mb-6">
-                "{t.content}"
-              </p>
-              
-              <div className="flex items-center gap-4">
-                <img 
-                  src={t.image} 
-                  alt={t.author} 
-                  className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
-                />
-                <div>
-                  <div className="font-semibold text-slate-900">{t.author}</div>
-                  <div className="text-sm text-slate-500">{t.role}</div>
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          {/* First row - normal direction */}
+          <Marquee pauseOnHover={true} repeat={3} className="[--duration:30s]">
+            {testimonials.map((t, index) => (
+              <motion.div 
+                key={`row1-${index}`} 
+                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative w-[400px] mx-4"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex text-yellow-500 mb-4">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  "{t.content}"
+                </p>
+                
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={t.image} 
+                    alt={t.author} 
+                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
+                  />
+                  <div>
+                    <div className="font-semibold text-slate-900">{t.author}</div>
+                    <div className="text-sm text-slate-500">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </Marquee>
+
+          {/* Second row - reverse direction */}
+          <Marquee pauseOnHover={true} reverse={true} repeat={3} className="[--duration:30s]">
+            {testimonials.map((t, index) => (
+              <motion.div 
+                key={`row2-${index}`} 
+                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative w-[400px] mx-4"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex text-yellow-500 mb-4">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
+                </div>
+                
+                <p className="text-slate-700 leading-relaxed mb-6">
+                  "{t.content}"
+                </p>
+                
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={t.image} 
+                    alt={t.author} 
+                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
+                  />
+                  <div>
+                    <div className="font-semibold text-slate-900">{t.author}</div>
+                    <div className="text-sm text-slate-500">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </Marquee>
+
+          {/* Gradient blur overlays */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-slate-50"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-slate-50"></div>
         </div>
       </div>
     </section>

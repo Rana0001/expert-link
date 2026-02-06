@@ -393,7 +393,7 @@ export default function StepBio({ data, onUpdate, onNext, onBack }: StepBioProps
           <div className="flex gap-3 animate-in fade-in duration-200">
             <Button
               onClick={handleNext}
-              disabled={!canContinue || (website && !isValidUrl(website))}
+              disabled={!canContinue || (!!website && !isValidUrl(website))}
               className="h-12 px-8 bg-slate-900 hover:bg-slate-800 text-white rounded-lg disabled:opacity-50"
             >
               Continue <ArrowRight size={16} className="ml-2" />
