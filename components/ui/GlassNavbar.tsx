@@ -1,10 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Search, Menu } from "lucide-react";
+import { createClient } from "@/utils/supabase/server";
 
-export function GlassNavbar() {
+export async function GlassNavbar() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -32,13 +34,22 @@ export function GlassNavbar() {
                     </Link>
                 </Button>
                 
-                {/* Auth Buttons */}
-                <Button variant="ghost" asChild className="hidden md:flex text-slate-600 hover:text-blue-600 hover:bg-blue-50">
-                    <Link href="/login">Log in</Link>
-                </Button>
-                <Button asChild className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md">
-                    <Link href="/signup">Sign up</Link>
-                </Button>
+                {user ? (
+                  // Logged-in state
+                  <Button asChild className="hidden md:flex bg-slate-900 hover:bg-slate-800 text-white rounded-xl">
+                    <Link href="/dashboard">Dashboard</Link>
+                  </Button>
+                ) : (
+                  // Logged-out state
+                  <>
+                    <Button variant="ghost" asChild className="hidden md:flex text-slate-600 hover:text-blue-600 hover:bg-blue-50">
+                        <Link href="/login">Log in</Link>
+                    </Button>
+                    <Button asChild className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md">
+                        <Link href="/signup">Sign up</Link>
+                    </Button>
+                  </>
+                )}
                 
                 <Button variant="ghost" size="icon" className="md:hidden">
                     <Menu />
