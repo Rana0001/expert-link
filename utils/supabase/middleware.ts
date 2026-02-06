@@ -37,7 +37,7 @@ export async function updateSession(request: NextRequest) {
 
   // Allow unauthenticated access to public routes
   if (!user) {
-    if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/onboarding')) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
     return supabaseResponse
@@ -48,6 +48,11 @@ export async function updateSession(request: NextRequest) {
   const isExpert = role === 'expert';
   const isOnboardingRoute = request.nextUrl.pathname.startsWith('/onboarding');
   const isAuthRoute = request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup';
+
+  // Redirect non-experts trying to access onboarding
+  if (!isExpert && isOnboardingRoute) {
+     return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
 
   // Check onboarding status for experts
   let onboardingCompleted = false;

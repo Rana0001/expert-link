@@ -19,18 +19,20 @@ export function GlassNavbar() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-                <Link href="#experts" className="hover:text-blue-600 transition-colors">Browse Experts</Link>
-                <Link href="#how-it-works" className="hover:text-blue-600 transition-colors">How it Works</Link>
-                <Link href="#pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
+                <Link href="/browse" className="hover:text-blue-600 transition-colors">Browse Experts</Link>
+                <Link href="/#how-it-works" className="hover:text-blue-600 transition-colors">How it Works</Link>
+                <Link href="/#pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
             </div>
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-                <Button variant="ghost" size="icon" className="hidden md:flex text-slate-500 hover:text-blue-600">
-                    <Search size={20} />
+                <Button variant="ghost" size="icon" asChild className="hidden md:flex text-slate-500 hover:text-blue-600">
+                    <Link href="/browse">
+                        <Search size={20} />
+                    </Link>
                 </Button>
-                <Button className="hidden md:flex bg-slate-900 hover:bg-slate-800 text-white rounded-xl">
-                    For Experts
+                <Button asChild className="hidden md:flex bg-slate-900 hover:bg-slate-800 text-white rounded-xl">
+                    <Link href="/onboarding">For Experts</Link>
                 </Button>
                 <Button variant="ghost" size="icon" className="md:hidden">
                     <Menu />

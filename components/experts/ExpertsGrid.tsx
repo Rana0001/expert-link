@@ -44,7 +44,7 @@ export function ExpertsGrid({ initialExperts, initialQuery = "" }: ExpertsGridPr
     <div className="space-y-12">
       {/* Search Bar */}
       <div className="relative max-w-lg mx-auto mb-16">
-        <div className="relative group">
+        <div className="relative group z-20">
             <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-indigo-500/20 rounded-2xl blur opacity-100 transition duration-1000 group-focus-within:opacity-100 group-hover:opacity-100"></div>
             <div className="relative bg-white rounded-2xl p-1.5 shadow-xl shadow-slate-200/50 flex items-center gap-2 ring-1 ring-slate-100 transition-all group-focus-within:ring-blue-100 group-focus-within:shadow-blue-500/10">
             <Search className="ml-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" size={20} />
@@ -64,8 +64,35 @@ export function ExpertsGrid({ initialExperts, initialQuery = "" }: ExpertsGridPr
               </button>
             )}
             </div>
+            
+            {/* Suggestions Dropdown */}
+            {query.length > 0 && (
+                <div className="absolute top-FULL left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="max-h-[300px] overflow-y-auto py-2">
+                        {filteredExperts.length > 0 ? (
+                            filteredExperts.map(expert => (
+                                <button
+                                    key={expert.id}
+                                    onClick={() => setQuery(expert.name)} 
+                                    className="w-full text-left px-4 py-3 hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
+                                >
+                                    <Search size={16} className="text-slate-400 group-hover/item:text-blue-500 transition-colors" />
+                                    <div>
+                                        <p className="font-medium text-slate-900 group-hover/item:text-blue-700 transition-colors">{expert.name}</p>
+                                        <p className="text-xs text-slate-500 line-clamp-1">{expert.title}</p>
+                                    </div>
+                                </button>
+                            ))
+                        ) : (
+                             <div className="px-4 py-8 text-center text-slate-500 text-sm">
+                                <p>No suggestions found.</p>
+                             </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
-        <div className="flex justify-center gap-2 mt-4 text-sm text-slate-500">
+        <div className="flex justify-center gap-2 mt-4 text-sm text-slate-500 relative z-10">
            <span>Suggested:</span>
            <button onClick={() => setQuery('React')} className="hover:text-blue-600 hover:underline">React</button>
            <button onClick={() => setQuery('Design')} className="hover:text-blue-600 hover:underline">Design</button>
