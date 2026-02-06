@@ -3,10 +3,16 @@ import { ExpertCard } from "@/components/experts/ExpertCard";
 import { Button } from "@/components/ui/button";
 import { GlassNavbar } from "@/components/ui/GlassNavbar"; // Import Nav
 import { Search, Star, ArrowRight } from "lucide-react";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Features } from "@/components/landing/Features";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { Pricing } from "@/components/landing/Pricing";
+import { CallToAction } from "@/components/landing/CallToAction";
+import { Footer } from "@/components/landing/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen pb-20 pt-20"> 
+    <div className="min-h-screen pt-20"> 
     {/* Added padding top for fixed nav */}
       <GlassNavbar />
       
@@ -50,7 +56,7 @@ export default function Home() {
       </section>
       
       {/* Marketplace Grid */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main id="experts" className="max-w-6xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-8">
           <div>
              <h2 className="text-2xl font-bold text-slate-900">Featured Experts</h2>
@@ -67,6 +73,18 @@ export default function Home() {
           ))}
         </div>
       </main>
+
+      <HowItWorks />
+      
+      <Features />
+      
+      <Testimonials />
+      
+      <Pricing />
+      
+      <CallToAction />
+      
+      <Footer />
     </div>
   );
 }

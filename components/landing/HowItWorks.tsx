@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, Calendar, Video } from "lucide-react";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -33,9 +34,30 @@ export function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 relative"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
+        >
           {steps.map((step, index) => (
-            <div key={index} className="relative flex flex-col items-center text-center group">
+            <motion.div 
+              key={index} 
+              className="relative flex flex-col items-center text-center group"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+            >
               {/* Connector Line (Desktop only) */}
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-slate-200 -z-10" />
@@ -51,9 +73,9 @@ export function HowItWorks() {
               <p className="text-slate-600 leading-relaxed">
                 {step.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

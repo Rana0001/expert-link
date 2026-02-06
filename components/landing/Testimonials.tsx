@@ -1,6 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -36,7 +37,14 @@ export function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative">
+            <motion.div 
+              key={index} 
+              className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               {/* Quote icon decoration could go here */}
               
               <div className="flex text-yellow-500 mb-4">
@@ -60,7 +68,7 @@ export function Testimonials() {
                   <div className="text-sm text-slate-500">{t.role}</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

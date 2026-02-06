@@ -19,9 +19,9 @@ export function GlassNavbar() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-                <Link href="#" className="hover:text-blue-600 transition-colors">Browse Experts</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">How it Works</Link>
-                <Link href="#" className="hover:text-blue-600 transition-colors">Pricing</Link>
+                <Link href="#experts" className="hover:text-blue-600 transition-colors">Browse Experts</Link>
+                <Link href="#how-it-works" className="hover:text-blue-600 transition-colors">How it Works</Link>
+                <Link href="#pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
             </div>
 
             {/* Actions */}
