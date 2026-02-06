@@ -41,8 +41,8 @@ const features = [
     name: "Secure Payments",
     description: "Funds are held in escrow until the session is successfully completed.",
     stats: ["Bank-Level Security", "$5M+ Processed"],
-    href: "/#pricing",
-    cta: "View Pricing",
+    href: "/browse",
+    cta: "Learn More",
     className: "col-span-3 lg:col-span-2",
     background: (
       <>
@@ -89,8 +89,8 @@ const features = [
     name: "Satisfaction Guarantee",
     description: "Not satisfied with your session? Get a full refund, no questions asked.",
     stats: ["100% Refund", "No Questions"],
-    href: "/#pricing",
-    cta: "Our Promise",
+    href: "/browse",
+    cta: "Learn More",
     className: "col-span-3 lg:col-span-2",
     background: (
       <>
