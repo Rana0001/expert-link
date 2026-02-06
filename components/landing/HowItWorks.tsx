@@ -23,13 +23,13 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-slate-50">
+    <section id="how-it-works" className="py-24 bg-slate-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
             How ExpertLink Works
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             From discovery to mastery in three simple steps.
           </p>
         </div>
@@ -60,17 +60,17 @@ export function HowItWorks() {
             >
               {/* Connector Line (Desktop only) */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-slate-200 -z-10" />
+                <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-10" />
               )}
               
-              <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-500 group-hover:shadow-md transition-all duration-300">
-                <step.icon className="h-8 w-8 text-blue-600" />
+              <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-500 dark:group-hover:border-blue-400 group-hover:shadow-md transition-all duration-300">
+                <step.icon className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
               
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
                 {step.title}
               </h3>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function CallToAction() {
   return (
-    <section className="py-24 bg-slate-900 border-t border-slate-800">
+    <section className="py-24 bg-slate-900 dark:bg-slate-950 border-t border-slate-800 dark:border-slate-800">
       <motion.div 
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export function CallToAction() {
         <h2 className="text-3xl font-bold text-white tracking-tight sm:text-4xl mb-6">
           Ready to Share Your Expertise?
         </h2>
-        <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-lg text-slate-400 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
           Join thousands of professionals earning on their own terms. Set your rates, control your schedule, and inspire others.
         </p>
         
@@ -30,7 +30,7 @@ export function CallToAction() {
           </Button>
         </div>
         
-        <p className="mt-8 text-sm text-slate-500">
+        <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
           No credit card required. Cancel anytime.
         </p>
       </motion.div>

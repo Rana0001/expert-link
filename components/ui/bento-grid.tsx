@@ -46,11 +46,14 @@ const BentoCard = ({
   <div
     key={name}
     className={cn(
-      "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
+      "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300",
       // light styles
-      "bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-      // dark styles
-      "dark:bg-background transform-gpu dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] dark:[border:1px_solid_rgba(255,255,255,.1)]",
+      "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+      // dark styles - glassmorphic with depth
+      "dark:bg-slate-800/50 dark:backdrop-blur-xl transform-gpu",
+      "dark:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]",
+      "dark:[border:1px_solid_rgba(148,163,184,0.2)]",
+      "hover:scale-[1.02]",
       className
     )}
     {...props}
@@ -58,11 +61,11 @@ const BentoCard = ({
     <div>{background}</div>
     <div className="p-4">
       <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
-        <Icon className="h-12 w-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-75" />
-        <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
+        <Icon className="h-12 w-12 origin-left transform-gpu text-slate-700 dark:text-slate-300 transition-all duration-300 ease-in-out group-hover:scale-75 dark:group-hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />
+        <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
           {name}
         </h3>
-        <p className="max-w-lg text-neutral-400">{description}</p>
+        <p className="max-w-lg text-slate-600 dark:text-slate-400">{description}</p>
       </div>
 
       <div
@@ -102,7 +105,7 @@ const BentoCard = ({
       </Button>
     </div>
 
-    <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+    <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/3 group-hover:dark:bg-slate-700/20" />
   </div>
 )
 

@@ -11,16 +11,16 @@ export default function BrowsePage({
   const initialQuery = typeof searchParams.q === "string" ? searchParams.q : "";
 
   return (
-    <div className="min-h-screen pt-20 bg-slate-50 relative overflow-hidden">
+    <div className="min-h-screen pt-20 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
        {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none" />
-      <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none opacity-100 dark:opacity-30" />
+      <div className="absolute inset-0 bg-linear-to-b from-white dark:from-slate-950 via-transparent to-transparent pointer-events-none" />
       
       <GlassNavbar />
 
       <main className="max-w-6xl mx-auto px-4 py-16 relative z-10">
         <div className="mb-16 text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-semibold text-xs mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-semibold text-xs mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -28,11 +28,11 @@ export default function BrowsePage({
               Over 500+ Active Experts
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
               Find the perfect mentor <br/>
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">to accelerate your growth.</span>
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">to accelerate your growth.</span>
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Connect with world-class professionals for 1:1 guidance, code reviews, and career advice.
             </p>
         </div>

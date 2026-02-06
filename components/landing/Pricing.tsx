@@ -38,13 +38,13 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-24 bg-white">
+    <section id="pricing" className="py-24 bg-white dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
             Simple, Transparent Pricing
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             ExpertLink is a community-first platform. We align our success with yours.
           </p>
         </div>
@@ -53,7 +53,7 @@ export function Pricing() {
           {plans.map((plan, index) => (
             <motion.div 
               key={index}
-              className={`relative p-8 rounded-3xl border ${plan.popular ? 'border-blue-600 shadow-xl shadow-blue-900/10' : 'border-slate-200 shadow-sm'}`}
+              className={`relative p-8 rounded-3xl border dark:bg-slate-800 ${plan.popular ? 'border-blue-600 dark:border-blue-500 shadow-xl shadow-blue-900/10 dark:shadow-blue-500/10' : 'border-slate-200 dark:border-slate-700 shadow-sm'}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -67,16 +67,16 @@ export function Pricing() {
                 </div>
               )}
 
-              <h3 className="text-xl font-bold text-slate-900">{plan.name}</h3>
-              <p className="text-slate-500 mt-2 mb-6 h-10">{plan.description}</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{plan.name}</h3>
+              <p className="text-slate-500 dark:text-slate-400 mt-2 mb-6 h-10">{plan.description}</p>
               
               <div className="flex items-baseline mb-6">
-                <span className="text-4xl font-extrabold text-slate-900">
+                <span className="text-4xl font-extrabold text-slate-900 dark:text-white">
                   {plan.currency === 'fee' ? '' : '$'}
                   {plan.price}
                 </span>
-                {plan.currency === 'fee' && <span className="text-xl font-semibold text-slate-900 ml-1">fee</span>}
-                <span className="text-slate-500 ml-2">
+                {plan.currency === 'fee' && <span className="text-xl font-semibold text-slate-900 dark:text-white ml-1">fee</span>}
+                <span className="text-slate-500 dark:text-slate-400 ml-2">
                   {plan.currency === 'fee' ? 'per transaction' : '/ month'}
                 </span>
               </div>
@@ -84,10 +84,10 @@ export function Pricing() {
               <div className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="shrink-0 w-5 h-5 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <div className="shrink-0 w-5 h-5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                       <Check size={12} strokeWidth={3} />
                     </div>
-                    <span className="text-slate-700">{feature}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{feature}</span>
                   </div>
                 ))}
               </div>

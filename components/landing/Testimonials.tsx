@@ -30,9 +30,9 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-slate-50">
+    <section id="testimonials" className="py-24 bg-slate-50 dark:bg-slate-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-slate-900 tracking-tight sm:text-4xl mb-16">
+        <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white tracking-tight sm:text-4xl mb-16">
           Loved by Professionals
         </h2>
 
@@ -42,7 +42,7 @@ export function Testimonials() {
             {testimonials.map((t, index) => (
               <motion.div 
                 key={`row1-${index}`} 
-                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative w-[400px] mx-4"
+                className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm relative w-[400px] mx-4"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -54,7 +54,7 @@ export function Testimonials() {
                   ))}
                 </div>
                 
-                <p className="text-slate-700 leading-relaxed mb-6">
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
                   "{t.content}"
                 </p>
                 
@@ -62,11 +62,11 @@ export function Testimonials() {
                   <img 
                     src={t.image} 
                     alt={t.author} 
-                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50 dark:border-slate-700"
                   />
                   <div>
-                    <div className="font-semibold text-slate-900">{t.author}</div>
-                    <div className="text-sm text-slate-500">{t.role}</div>
+                    <div className="font-semibold text-slate-900 dark:text-white">{t.author}</div>
+                    <div className="text-sm text-slate-500 dark:text-slate-400">{t.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -78,7 +78,7 @@ export function Testimonials() {
             {testimonials.map((t, index) => (
               <motion.div 
                 key={`row2-${index}`} 
-                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative w-[400px] mx-4"
+                className="bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm relative w-[400px] mx-4"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -90,7 +90,7 @@ export function Testimonials() {
                   ))}
                 </div>
                 
-                <p className="text-slate-700 leading-relaxed mb-6">
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
                   "{t.content}"
                 </p>
                 
@@ -98,11 +98,11 @@ export function Testimonials() {
                   <img 
                     src={t.image} 
                     alt={t.author} 
-                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-slate-50 dark:border-slate-700"
                   />
                   <div>
-                    <div className="font-semibold text-slate-900">{t.author}</div>
-                    <div className="text-sm text-slate-500">{t.role}</div>
+                    <div className="font-semibold text-slate-900 dark:text-white">{t.author}</div>
+                    <div className="text-sm text-slate-500 dark:text-slate-400">{t.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -110,8 +110,8 @@ export function Testimonials() {
           </Marquee>
 
           {/* Gradient blur overlays */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-slate-50"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-slate-50"></div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-slate-50 dark:from-slate-950"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-slate-50 dark:from-slate-950"></div>
         </div>
       </div>
     </section>

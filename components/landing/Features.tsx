@@ -12,7 +12,7 @@ const features = [
     cta: "Browse Experts",
     className: "col-span-3 lg:col-span-1",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-blue-900/15 dark:to-indigo-900/15 opacity-50" />
     ),
   },
   {
@@ -23,7 +23,7 @@ const features = [
     cta: "Learn More",
     className: "col-span-3 lg:col-span-2",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-emerald-50 to-teal-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/15 dark:to-teal-900/15 opacity-50" />
     ),
   },
   {
@@ -34,7 +34,7 @@ const features = [
     cta: "View Pricing",
     className: "col-span-3 lg:col-span-2",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-amber-50 to-orange-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-amber-50 to-orange-50 dark:from-amber-900/15 dark:to-orange-900/15 opacity-50" />
     ),
   },
   {
@@ -45,7 +45,7 @@ const features = [
     cta: "Try Now",
     className: "col-span-3 lg:col-span-1",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-sky-50 to-cyan-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-sky-50 to-cyan-50 dark:from-sky-900/15 dark:to-cyan-900/15 opacity-50" />
     ),
   },
   {
@@ -56,7 +56,7 @@ const features = [
     cta: "Get Started",
     className: "col-span-3 lg:col-span-1",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-yellow-50 to-amber-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/15 dark:to-amber-900/15 opacity-50" />
     ),
   },
   {
@@ -67,20 +67,20 @@ const features = [
     cta: "Our Promise",
     className: "col-span-3 lg:col-span-2",
     background: (
-      <div className="absolute inset-0 bg-linear-to-br from-rose-50 to-pink-50 opacity-50" />
+      <div className="absolute inset-0 bg-linear-to-br from-rose-50 to-pink-50 dark:from-rose-900/15 dark:to-pink-900/15 opacity-50" />
     ),
   },
 ];
 
 export function Features() {
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="py-24 bg-white dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl mb-4">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight sm:text-4xl mb-4">
             Why Choose ExpertLink?
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl">
             We provide the infrastructure so you can focus on the conversation.
           </p>
         </div>
