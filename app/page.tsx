@@ -39,17 +39,18 @@ export default function Home() {
            <div className="max-w-md mx-auto mt-8 relative animate-in zoom-in-95 duration-700 delay-300">
               <div className="relative group">
                  <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                 <div className="relative bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2">
+                 <form action="/browse" className="relative bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2">
                     <Search className="ml-4 text-slate-400" size={20} />
                     <input 
                       type="text" 
+                      name="q"
                       placeholder="Search 'React', 'Marketing', 'Legal'..."
-                      className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 h-10"
+                      className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder:text-slate-400 h-10 w-full"
                     />
-                    <Button size="lg" className="rounded-xl bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" size="lg" className="rounded-xl bg-blue-600 hover:bg-blue-700">
                        Find Expert
                     </Button>
-                 </div>
+                 </form>
               </div>
            </div>
         </div>
@@ -62,8 +63,8 @@ export default function Home() {
              <h2 className="text-2xl font-bold text-slate-900">Featured Experts</h2>
              <p className="text-slate-500">Top rated mentors available this week</p>
           </div>
-          <Button variant="ghost" className="hidden md:flex gap-2 text-blue-600 hover:bg-blue-50">
-             View All <ArrowRight size={16} />
+          <Button variant="ghost" asChild className="hidden md:flex gap-2 text-blue-600 hover:bg-blue-50">
+             <a href="/browse">View All <ArrowRight size={16} /></a>
           </Button>
         </div>
         
