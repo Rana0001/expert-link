@@ -62,19 +62,19 @@ export default function ResetPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+      <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
         <div className="w-full max-w-md animate-in zoom-in-95 duration-500">
-          <Card className="p-8 text-center bg-white/80 backdrop-blur-xl border-white/20 shadow-xl space-y-6">
-            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+          <Card className="p-8 text-center bg-white/80 dark:bg-slate-800/90 backdrop-blur-xl border-white/20 dark:border-slate-700/50 shadow-xl space-y-6">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 size={32} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">Password Reset!</h2>
-              <p className="text-slate-500 mt-2">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Password Reset!</h2>
+              <p className="text-slate-500 dark:text-slate-400 mt-2">
                 Your password has been updated successfully.
               </p>
             </div>
-            <div className="text-sm bg-green-50 text-green-700 p-4 rounded-xl">
+            <div className="text-sm bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 p-4 rounded-xl">
               Redirecting to login page...
             </div>
           </Card>
@@ -84,15 +84,15 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
       <div className="w-full max-w-md space-y-8 animate-in zoom-in-95 duration-500">
         
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Reset Password</h1>
-          <p className="text-slate-500 mt-2">Enter your new password below.</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Reset Password</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-2">Enter your new password below.</p>
         </div>
 
-        <Card className="p-6 bg-white/80 backdrop-blur-xl border-white/20 shadow-xl">
+        <Card className="p-6 bg-white/80 dark:bg-slate-800/90 backdrop-blur-xl border-white/20 dark:border-slate-700/50 shadow-xl">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -131,8 +131,8 @@ export default function ResetPasswordPage() {
           </Form>
         </Card>
         
-        <p className="text-center text-sm text-slate-500">
-          Remember your password? <Link href="/login" className="text-blue-600 font-medium hover:underline">Log in</Link>
+        <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+          Remember your password? <Link href="/login" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">Log in</Link>
         </p>
 
       </div>

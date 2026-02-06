@@ -74,19 +74,19 @@ export default function SignUpPage() {
 
   if (success) {
       return (
-        <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+        <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
              <div className="w-full max-w-md animate-in zoom-in-95 duration-500">
-                <Card className="p-8 text-center bg-white/80 backdrop-blur-xl border-white/20 shadow-xl space-y-6">
-                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+                <Card className="p-8 text-center bg-white/80 dark:bg-slate-800/90 backdrop-blur-xl border-white/20 dark:border-slate-700/50 shadow-xl space-y-6">
+                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto">
                         <Mail size={32} />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900">Check your email</h2>
-                        <p className="text-slate-500 mt-2">
-                            We've sent a confirmation link to <span className="font-semibold text-slate-900">{form.getValues("email")}</span>.
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Check your email</h2>
+                        <p className="text-slate-500 dark:text-slate-400 mt-2">
+                            We've sent a confirmation link to <span className="font-semibold text-slate-900 dark:text-white">{form.getValues("email")}</span>.
                         </p>
                     </div>
-                    <div className="text-sm bg-blue-50 text-blue-700 p-4 rounded-xl">
+                    <div className="text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 p-4 rounded-xl">
                         Click the link in the email to activate your account and start your journey as a <span className="capitalize font-bold">{role}</span>.
                     </div>
                     <Button variant="outline" className="w-full" asChild>
@@ -99,12 +99,12 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
       <div className="w-full max-w-md space-y-8 animate-in zoom-in-95 duration-500">
         
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Create an Account</h1>
-          <p className="text-slate-500 mt-2">Join ExpertLink to {role === 'expert' ? 'monetize your skills' : 'master new skills'}.</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Create an Account</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-2">Join ExpertLink to {role === 'expert' ? 'monetize your skills' : 'master new skills'}.</p>
         </div>
 
         {!role ? (
@@ -112,33 +112,33 @@ export default function SignUpPage() {
           <div className="grid grid-cols-2 gap-4">
              <Card 
                onClick={() => setRole('client')}
-               className="p-6 cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all group text-center space-y-4"
+               className="p-6 cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all group text-center space-y-4 dark:bg-slate-800/50 dark:border-slate-700"
              >
-                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                    <User size={24} />
                 </div>
                 <div>
-                   <h3 className="font-bold text-slate-900">Client</h3>
-                   <p className="text-xs text-slate-500 mt-1">I want to book experts.</p>
+                   <h3 className="font-bold text-slate-900 dark:text-white">Client</h3>
+                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">I want to book experts.</p>
                 </div>
              </Card>
 
              <Card 
                onClick={() => setRole('expert')}
-               className="p-6 cursor-pointer hover:border-indigo-500 hover:bg-indigo-50/50 transition-all group text-center space-y-4"
+               className="p-6 cursor-pointer hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20 transition-all group text-center space-y-4 dark:bg-slate-800/50 dark:border-slate-700"
              >
-                <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                    <Briefcase size={24} />
                 </div>
                 <div>
-                   <h3 className="font-bold text-slate-900">Expert</h3>
-                   <p className="text-xs text-slate-500 mt-1">I want to offer services.</p>
+                   <h3 className="font-bold text-slate-900 dark:text-white">Expert</h3>
+                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">I want to offer services.</p>
                 </div>
              </Card>
           </div>
         ) : (
           /* Form Step */
-          <Card className="p-6 bg-white/80 backdrop-blur-xl border-white/20 shadow-xl">
+          <Card className="p-6 bg-white/80 dark:bg-slate-800/90 backdrop-blur-xl border-white/20 dark:border-slate-700/50 shadow-xl">
              <div className="mb-6 flex items-center justify-between">
                 <h2 className="font-semibold text-lg">Sign up as {role === 'expert' ? 'Expert' : 'Client'}</h2>
                 <Button variant="ghost" size="sm" onClick={() => setRole(null)} className="text-xs text-slate-400">Change</Button>
@@ -189,8 +189,8 @@ export default function SignUpPage() {
           </Card>
         )}
         
-        <p className="text-center text-sm text-slate-500">
-           Already have an account? <Link href="/login" className="text-blue-600 font-medium hover:underline">Log in</Link>
+        <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+           Already have an account? <Link href="/login" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">Log in</Link>
         </p>
 
       </div>

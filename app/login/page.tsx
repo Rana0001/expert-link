@@ -70,15 +70,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
+    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
       <div className="w-full max-w-md space-y-8 animate-in zoom-in-95 duration-500">
         
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Welcome Back</h1>
-          <p className="text-slate-500 mt-2">Sign in to your ExpertLink account.</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Welcome Back</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-2">Sign in to your ExpertLink account.</p>
         </div>
 
-        <Card className="p-6 bg-white/80 backdrop-blur-xl border-white/20 shadow-xl">
+        <Card className="p-6 bg-white/80 dark:bg-slate-800/90 backdrop-blur-xl border-white/20 dark:border-slate-700/50 shadow-xl">
              <Form {...form}>
                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
@@ -99,7 +99,7 @@ export default function LoginPage() {
                       <FormItem>
                       <div className="flex items-center justify-between">
                             <FormLabel>Password</FormLabel>
-                            <Link href="/forgot-password" className="text-xs text-blue-600 hover:underline">Forgot password?</Link>
+                            <Link href="/forgot-password" className="text-xs text-blue-600 dark:text-blue-400 hover:underline">Forgot password?</Link>
                         </div>
                         <FormControl><Input type="password" placeholder="••••••" {...field} /></FormControl>
                         <FormMessage />
@@ -115,8 +115,8 @@ export default function LoginPage() {
              </Form>
         </Card>
         
-        <p className="text-center text-sm text-slate-500">
-           Don't have an account? <Link href="/signup" className="text-blue-600 font-medium hover:underline">Sign up</Link>
+        <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+           Don't have an account? <Link href="/signup" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">Sign up</Link>
         </p>
 
       </div>
