@@ -1,0 +1,69 @@
+"use client";
+
+import { Star } from "lucide-react";
+
+const testimonials = [
+  {
+    content: "ExpertLink helped me find a mentor who guided me through my transition into product management. invaluable!",
+    author: "Sarah J.",
+    role: "Product Manager",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100"
+  },
+  {
+    content: "The video quality is amazing and the booking process is seamless. I've booked 5 sessions this month alone.",
+    author: "Michael C.",
+    role: "Startup Founder",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100&h=100"
+  },
+  {
+    content: "As an expert, this platform handles everything I experienced headache with before. Payments are always on time.",
+    author: "Dr. Emily R.",
+    role: "Legal Consultant",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100"
+  }
+];
+
+export function Testimonials() {
+  return (
+    <section id="testimonials" className="py-24 bg-slate-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center text-slate-900 tracking-tight sm:text-4xl mb-16">
+          Loved by Professionals
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((t, index) => (
+            <div key={index} className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative">
+              {/* Quote icon decoration could go here */}
+              
+              <div className="flex text-yellow-500 mb-4">
+                {[...Array(t.rating)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
+                ))}
+              </div>
+              
+              <p className="text-slate-700 leading-relaxed mb-6">
+                "{t.content}"
+              </p>
+              
+              <div className="flex items-center gap-4">
+                <img 
+                  src={t.image} 
+                  alt={t.author} 
+                  className="w-12 h-12 rounded-full object-cover border-2 border-slate-50"
+                />
+                <div>
+                  <div className="font-semibold text-slate-900">{t.author}</div>
+                  <div className="text-sm text-slate-500">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
