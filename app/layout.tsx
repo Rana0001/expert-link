@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { MeshBackground } from "@/components/ui/MeshBackground";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeFAB } from "@/components/ui/ThemeFAB";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
 import "@fontsource/dm-sans/700.css";
@@ -35,6 +36,7 @@ export default function RootLayout({
         <MeshBackground />
         {children}
         <Toaster />
+        <ThemeFAB />
       </body>
     </html>
   );

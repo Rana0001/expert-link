@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Search, Menu } from "lucide-react";
 import { createClient } from "@/utils/supabase/server";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 export async function GlassNavbar() {
   const supabase = await createClient();
@@ -29,10 +28,6 @@ export async function GlassNavbar() {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-                <AnimatedThemeToggler 
-                    className="hidden md:flex text-slate-500 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-slate-100/50"
-                    duration={500}
-                />
                 <Button variant="ghost" size="icon" asChild className="hidden md:flex text-slate-500 hover:text-blue-600">
                     <Link href="/browse">
                         <Search size={20} />
