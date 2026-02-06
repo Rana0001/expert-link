@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -73,6 +73,14 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 bg-slate-50 dark:bg-slate-950">
       <div className="w-full max-w-md space-y-8 animate-in zoom-in-95 duration-500">
         
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          <ArrowLeft size={16} />
+          Back to Home
+        </Link>
+
         <div className="text-center">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Welcome Back</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-2">Sign in to your ExpertLink account.</p>
