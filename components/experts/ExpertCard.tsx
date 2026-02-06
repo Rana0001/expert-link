@@ -82,10 +82,19 @@ export function ExpertCard({ expert }: { expert: Expert }) {
         </div>
       </CardContent>
 
-      <CardFooter className="pt-0 pb-5 relative z-10 px-6">
+      <CardFooter className="pt-0 pb-5 relative z-10 px-6 grid grid-cols-2 gap-3">
         <Button 
             asChild 
-            className="w-full gap-2 bg-slate-900 hover:bg-blue-600 text-white shadow-md shadow-slate-900/10 hover:shadow-blue-600/20 rounded-xl transition-all duration-300 h-11 text-sm font-medium"
+            variant="outline"
+            className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300 shadow-sm rounded-xl h-10 text-sm font-medium"
+        >
+          <Link href={`/expert/${expert.id}`}>
+            View Profile
+          </Link>
+        </Button>
+        <Button 
+            asChild 
+            className="w-full gap-2 bg-slate-900 hover:bg-blue-600 text-white shadow-md shadow-slate-900/10 hover:shadow-blue-600/20 rounded-xl transition-all duration-300 h-10 text-sm font-medium"
         >
           <Link href={`/expert/${expert.id}`}>
             Book Session

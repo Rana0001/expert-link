@@ -127,7 +127,7 @@ export default function Step2_Calendar() {
                      {availableSlots.map((slot, idx) => {
                          const startLabel = formatSlot(slot, userTimezone);
                          // Check equality by value for object
-                         const isSelected = selectedSlot && slot.start.getTime() === selectedSlot.start.getTime();
+                         const isSelected = selectedSlot && new Date(slot.start).getTime() === new Date(selectedSlot.start).getTime();
                          
                          return (
                              <Button
