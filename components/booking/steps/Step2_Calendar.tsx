@@ -25,18 +25,23 @@ const TIMEZONES = [
 export default function Step2_Calendar() {
   const { selectedExpert, selectedService, selectedDate, setDate, setTimeSlot, selectedSlot, setStep } = useBookingStore();
   
-  // Local state for timezone selection (default to user's system timezone or expert's?)
-  // UX Pattern: Client wants to see time in THEIR timezone.
-  const [userTimezone, setUserTimezone] = useState<string>("UTC"); 
-  
-  useEffect(() => {
-    // Attempt detecting user timezone
+  // Local state for timezone selection
+  const [userTimezone, setUserTimezone] = useState<string>(() => {
     try {
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        if (tz) setUserTimezone(tz);
-    } catch(e) {}
-  }, []);
+        return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    } catch {
+        return "UTC";
+    }
+  }); 
 
+  // Ensure user's timezone is in the list
+  const visibleTimezones = useMemo(() => {
+     const set = new Set(TIMEZONES);
+     set.add(userTimezone);
+     if (selectedExpert?.timezone) set.add(selectedExpert.timezone);
+     return Array.from(set).sort();
+  }, [userTimezone, selectedExpert]);
+  
   // Compute Available Slots
   const availableSlots = useMemo(() => {
     if (!selectedExpert || !selectedDate || !selectedService) return [];
@@ -48,18 +53,12 @@ export default function Step2_Calendar() {
 
   const handleSlotSelect = (slot: TimeSlot) => {
     setTimeSlot(slot);
-    // Proceed to next step? Or let user click Next?
-    // Let's let user click next or auto? 
-    // Usually click next is safer for checking details.
-    // But "Optimistic UI" requested.
-    // Let's just highlight it, and show a "Continue" button below or auto-advance.
-    // I'll show Continue button.
   };
 
   if (!selectedExpert) return null;
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 px-2">
       <div className="flex flex-col md:flex-row gap-8">
          {/* Left: Calendar & Timezone */}
          <div className="flex-1 space-y-4">
@@ -67,7 +66,7 @@ export default function Step2_Calendar() {
                 <h3 className="font-semibold text-slate-900">Pick a Date</h3>
             </div>
             
-            <div className="bg-white rounded-lg border border-slate-200 p-2 inline-block">
+            <div className="bg-white rounded-lg border border-slate-200 p-2 inline-block shadow-sm">
                 <Calendar
                     mode="single"
                     selected={selectedDate || undefined}
@@ -89,11 +88,11 @@ export default function Step2_Calendar() {
                     <Globe size={14} /> Timezone
                 </label>
                 <Select value={userTimezone} onValueChange={setUserTimezone}>
-                    <SelectTrigger>
-                        <SelectValue />
+                    <SelectTrigger className="w-full bg-slate-50 border-slate-200 focus:ring-slate-900">
+                        <SelectValue placeholder="Select timezone" />
                     </SelectTrigger>
                     <SelectContent>
-                        {TIMEZONES.map(tz => (
+                        {visibleTimezones.map(tz => (
                             <SelectItem key={tz} value={tz}>
                                 {tz.replace(/_/g, ' ')}
                             </SelectItem>
@@ -134,7 +133,7 @@ export default function Step2_Calendar() {
                              <Button
                                 key={idx}
                                 variant={isSelected ? "default" : "outline"}
-                                className={`w-full justify-center ${isSelected ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
+                                className={`w-full justify-center ${isSelected ? 'bg-slate-900 hover:bg-slate-800 text-white' : 'hover:bg-slate-50 hover:text-slate-900 text-slate-600 border-slate-200'}`}
                                 onClick={() => handleSlotSelect(slot)}
                              >
                                 {startLabel}
@@ -143,6 +142,7 @@ export default function Step2_Calendar() {
                      })}
                  </div>
              )}
+
              
              {selectedSlot && (
                 <Button className="w-full mt-4 bg-slate-900" onClick={() => setStep(3)}>

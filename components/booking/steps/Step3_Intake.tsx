@@ -39,7 +39,7 @@ export default function Step3_Intake() {
   }
 
   return (
-    <div className="space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
+    <div className="px-2 space-y-6 animate-in slide-in-from-right-8 fade-in duration-300">
       <div>
         <h3 className="font-semibold text-slate-900 text-lg">Your Details</h3>
         <p className="text-slate-500 text-sm">Where should we send the invite?</p>
