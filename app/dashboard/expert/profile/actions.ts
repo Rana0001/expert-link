@@ -16,6 +16,7 @@ export type ProfileState = {
   success?: boolean;
   error?: string;
   message?: string;
+  data?: any;
 }
 
 export async function getProfile(userId: string) {
@@ -29,6 +30,8 @@ export async function getProfile(userId: string) {
     return { success: false, error: "Failed to fetch profile" };
   }
 }
+
+import { createClient } from "@/utils/supabase/server";
 
 export async function updateProfile(userId: string, prevState: ProfileState, formData: FormData): Promise<ProfileState> {
   const rawData = {
@@ -64,5 +67,62 @@ export async function updateProfile(userId: string, prevState: ProfileState, for
   } catch (error) {
     console.error("Error updating profile:", error);
     return { success: false, error: "Failed to update profile." };
+  }
+}
+
+export async function uploadAvatar(userId: string, formData: FormData): Promise<ProfileState> {
+  const file = formData.get('avatar') as File;
+  if (!file) {
+    return { success: false, error: "No file uploaded" };
+  }
+
+  const supabase = await createClient();
+
+  try {
+    const fileExt = file.name.split('.').pop();
+    const filePath = `${userId}/avatar.${fileExt}`;
+
+    // 1. Upload to Supabase Storage
+    const { error: uploadError } = await supabase.storage
+      .from('profile')
+      .upload(filePath, file, { upsert: true });
+
+    if (uploadError) {
+      console.error("Storage upload error:", uploadError);
+      return { success: false, error: uploadError.message || "Failed to upload image" };
+    }
+
+    // 2. Get Signed URL (valid for 10 years to mimic public access for private buckets)
+    const { data: signedData, error: signError } = await supabase.storage
+      .from('profile')
+      .createSignedUrl(filePath, 315360000);
+
+    if (signError) {
+      console.error("Error creating signed URL:", signError);
+      return { success: false, error: "Failed to generate image URL" };
+    }
+
+    const publicUrl = signedData.signedUrl;
+
+    // 3. Update Auth Metadata (so it persists in session)
+    const { error: authError } = await supabase.auth.updateUser({
+      data: { avatar_url: publicUrl }
+    });
+
+    if (authError) {
+       console.error("Auth update error:", authError);
+    }
+
+    // 4. Update Prisma Profile
+    await prisma.profile.update({
+      where: { id: userId },
+      data: { avatar_url: publicUrl }
+    });
+
+    revalidatePath('/dashboard/expert/profile');
+    return { success: true, message: "Avatar updated successfully", data: { avatar_url: publicUrl } }; // accessing data.avatar_url on client
+  } catch (error) {
+    console.error("Error in uploadAvatar:", error);
+    return { success: false, error: "Failed to update avatar" };
   }
 }

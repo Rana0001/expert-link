@@ -22,7 +22,13 @@ const CLIENT_NAV_ITEMS = [
   { label: "Settings", href: "/dashboard/client/settings", icon: Settings },
 ];
 
-export function Sidebar({ user }: { user: any }) {
+export function SidebarContent({ 
+  user, 
+  onLinkClick 
+}: { 
+  user: any;
+  onLinkClick?: () => void;
+}) {
   /* Auth Logic */
   const pathname = usePathname();
   const router = useRouter();
@@ -38,14 +44,15 @@ export function Sidebar({ user }: { user: any }) {
   };
 
   return (
-    <div className="w-64 border-r border-white/20 bg-white/40 backdrop-blur-xl h-screen fixed left-0 top-0 hidden md:flex flex-col p-4">
-      <div className="space-y-1 mt-8">
+    <div className="flex flex-col h-full w-full">
+      <div className="space-y-1 mt-8 flex-1">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           return (
             <Link 
               key={item.href} 
               href={item.href}
+              onClick={onLinkClick}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                 isActive 
@@ -60,7 +67,7 @@ export function Sidebar({ user }: { user: any }) {
         })}
       </div>
 
-      <div className="mt-auto pt-4 border-t border-white/20">
+      <div className="pt-4 border-t border-white/20">
         <Button 
             variant="ghost" 
             className="w-full justify-start text-red-500 hover:text-red-600 hover:bg-red-50"
@@ -70,6 +77,14 @@ export function Sidebar({ user }: { user: any }) {
           Log Out
         </Button>
       </div>
+    </div>
+  );
+}
+
+export function Sidebar({ user }: { user: any }) {
+  return (
+    <div className="w-64 border-r border-white/20 bg-white/40 backdrop-blur-xl h-screen fixed left-0 top-0 hidden lg:flex flex-col p-4">
+       <SidebarContent user={user} />
     </div>
   );
 }
