@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
+import { signupWithCustomConfirmation } from "./actions";
 
 // Define schema
 const signUpSchema = z.object({
@@ -37,39 +38,48 @@ export default function SignUpPage() {
     if (!role) return;
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
-      email: values.email,
-      password: values.password,
-      options: {
-        data: {
-          full_name: values.fullName,
-          role: role,
-        },
-      },
-    });
+    // Create FormData for the server action
+    const formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("fullName", values.fullName);
+    formData.append("role", role);
 
-    setLoading(false);
+    try {
+        const result = await signupWithCustomConfirmation(
+            { success: false, message: "" }, 
+            formData
+        );
 
-    if (error) {
-       toast.error("Sign up failed", {
-         description: error.message
-       });
-       return;
+        setLoading(false);
+
+        if (!result.success) {
+            toast.error("Sign up failed", {
+                description: result.error || "An unexpected error occurred."
+            });
+            return;
+        }
+
+        // Show Success State
+        setSuccess(true);
+        
+        // Store redirect URL for after email confirmation
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectTo = urlParams.get('redirect');
+        if (redirectTo) {
+        sessionStorage.setItem('post_signup_redirect', redirectTo);
+        }
+        
+        toast.success("Account created!", {
+            description: "Please check your email to confirm."
+        });
+
+    } catch (err: any) {
+        setLoading(false);
+        toast.error("Sign up error", {
+            description: err.message
+        });
     }
-
-    // Show Success State
-    setSuccess(true);
-    
-    // Store redirect URL for after email confirmation
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectTo = urlParams.get('redirect');
-    if (redirectTo) {
-      sessionStorage.setItem('post_signup_redirect', redirectTo);
-    }
-    
-    toast.success("Account created!", {
-        description: "Please check your email to confirm."
-    });
   }
 
   if (success) {

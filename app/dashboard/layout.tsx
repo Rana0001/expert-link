@@ -16,7 +16,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-slate-50/50">
-      <Sidebar />
+      <Sidebar user={user} />
       <main className="md:ml-64 pt-8 px-6 pb-12 w-full max-w-7xl mx-auto">
          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {children}

@@ -2,24 +2,34 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, User, Calendar, Briefcase, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, User, Calendar, Briefcase, Settings, LogOut, Search, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
 
-const NAV_ITEMS = [
-  { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Profile", href: "/dashboard/profile", icon: User },
-  { label: "Services", href: "/dashboard/services", icon: Briefcase },
-  { label: "Availability", href: "/dashboard/availability", icon: Calendar },
-  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+const EXPERT_NAV_ITEMS = [
+  { label: "Overview", href: "/dashboard/expert", icon: LayoutDashboard },
+  { label: "Profile", href: "/dashboard/expert/profile", icon: User },
+  { label: "Services", href: "/dashboard/expert/services", icon: Briefcase },
+  { label: "Availability", href: "/dashboard/expert/availability", icon: Calendar },
+  { label: "Settings", href: "/dashboard/expert/settings", icon: Settings },
 ];
 
-export function Sidebar() {
+const CLIENT_NAV_ITEMS = [
+  { label: "Overview", href: "/dashboard/client", icon: LayoutDashboard },
+  { label: "Browse Experts", href: "/browse", icon: Search },
+  { label: "My Bookings", href: "/dashboard/client/bookings", icon: BookOpen },
+  { label: "Settings", href: "/dashboard/client/settings", icon: Settings },
+];
+
+export function Sidebar({ user }: { user: any }) {
   /* Auth Logic */
   const pathname = usePathname();
   const router = useRouter();
   const supabase = createClient();
+
+  const role = user?.user_metadata?.role || "expert"; // Default to expert if undefined
+  const NAV_ITEMS = role === "client" ? CLIENT_NAV_ITEMS : EXPERT_NAV_ITEMS;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
