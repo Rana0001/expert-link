@@ -14,6 +14,7 @@ import { useActionState, useEffect, useState, useTransition, useRef } from "reac
 import { updateProfile, uploadAvatar } from "./actions";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ImageCropper } from "@/components/dashboard/ImageCropper";
 
 const profileSchema = z.object({
   full_name: z.string().min(2),
@@ -33,6 +34,10 @@ export function ProfileForm({ user, initialProfile }: ProfileFormProps) {
   const [isUploading, startUploadTransition] = useTransition();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [avatarUrl, setAvatarUrl] = useState(initialProfile?.avatar_url || user?.user_metadata?.avatar_url);
+  
+  // Cropper State
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [isCropperOpen, setIsCropperOpen] = useState(false);
 
 console.log("avatarUrl", avatarUrl);
 
@@ -76,19 +81,42 @@ console.log("avatarUrl", avatarUrl);
         return;
     }
 
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      setImageSrc(reader.result?.toString() || null);
+      setIsCropperOpen(true);
+    });
+    reader.readAsDataURL(file);
+    
+    // Reset input value so same file can be selected again
+    e.target.value = '';
+  };
+
+  const handleCropComplete = async (croppedBlob: Blob) => {
+    setIsCropperOpen(false);
+    
+    // Create a File from the Blob
+    const file = new File([croppedBlob], "avatar.jpg", { type: "image/jpeg" });
     const formData = new FormData();
     formData.append("avatar", file);
 
     startUploadTransition(async () => {
+        // Optimistic update
+        const objectUrl = URL.createObjectURL(croppedBlob);
+        setAvatarUrl(objectUrl);
+
         const result = await uploadAvatar(user.id, formData);
+        
         if (result.success) {
             toast.success("Avatar updated successfully");
-            // Optimistic update or use returned url
+            // Update with actual server URL if needed, though mostly signed URL is cleaner
             if (result.data && typeof result.data === 'object' && 'avatar_url' in result.data) {
                  setAvatarUrl(result.data.avatar_url);
             }
         } else {
             toast.error(result.error || "Failed to upload avatar");
+            // Revert on failure (optional, but good UX)
+            setAvatarUrl(initialProfile?.avatar_url || user?.user_metadata?.avatar_url);
         }
     });
   };
@@ -96,6 +124,14 @@ console.log("avatarUrl", avatarUrl);
   const displayName = form.watch("full_name");
 
   return (
+       <>
+       <ImageCropper 
+          isOpen={isCropperOpen} 
+          onClose={() => setIsCropperOpen(false)} 
+          imageSrc={imageSrc} 
+          onCropComplete={handleCropComplete} 
+       />
+       
        <Form {...form}>
          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 md:space-y-8 pb-20 md:pb-0">
            
@@ -248,5 +284,6 @@ console.log("avatarUrl", avatarUrl);
            </div>
          </form>
        </Form>
+       </>
   );
 }
